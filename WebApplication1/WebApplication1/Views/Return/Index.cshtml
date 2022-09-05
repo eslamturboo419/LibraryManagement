@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication1.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+              Author Name
+            </th>
+                  <th>
+              Borrow Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookId)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Name)
+            </td>
+                  <td>
+                @Html.DisplayFor(modelItem => item.Borrower.Name)
+            </td>
+            <td>
+                <a asp-action="ReturnBook" asp-route-bookid="@item.BookId" onclick="return confirm('Are You Sure To Return this')"> Return </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
